@@ -16,6 +16,14 @@ div.container > .card-panel {
     background: white;
 }
 
+section h4 {
+    margin-bottom: 3rem;
+}
+
+ol li {
+    margin: 1rem;
+}
+
 h5.question {
     line-height: 2.4rem;
     text-align: center;
