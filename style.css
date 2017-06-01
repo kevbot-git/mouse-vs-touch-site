@@ -64,7 +64,7 @@ ol * {
     list-style-type: decimal !important;
 }
 
-ul:not(.collection) li {
+ul.normal li {
     list-style-type: disc;
     margin-left: 3rem;
 }
