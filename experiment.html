@@ -45,6 +45,113 @@ To perform this usability test, we will create a small web application for parti
 						<!--<p>Also, our test was a moderated in-person test where we stood near the participant and observed them, this was more to check that our system didn't have any faults and that everything was running smoothly. Unfortunately, the Hawthorne effect states that something something. (probs chuck this in conclusion/reflection)</p>-->
 					</div>
 				</div>
+				<div class="row">
+					<div class="col s10 offset-s1">
+						<h4>Variables</h4>
+						<ul class="collapsible" data-collapsible="accordion">
+							<li>
+								<div class="collapsible-header"><i class="material-icons">view_list</i>Table of Variables</div>
+								<div class="collapsible-body">
+									<table class="bordered">
+										<thead>
+											<tr>
+												<th>Variable</th>
+												<th>Properties</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Point time</td>
+												<td>
+													<span class="left new badge green" data-badge-caption="Dependent"></span>
+												</td>
+												<td>Time taken to point to and click target.</td>
+											</tr>
+											<tr>
+												<td>Point displacement</td>
+												<td>
+													<span class="left new badge blue" data-badge-caption="Independent"></span>
+													<span class="left new badge purple" data-badge-caption="Randomised"></span>
+												</td>
+												<td>Distance from original cursor location to target location. Implicitly randomised due to randomised positions of targets.</td>
+											</tr>
+											<tr>
+												<td>Target radius</td>
+												<td>
+													<span class="left new badge blue" data-badge-caption="Independent"></span>
+													<span class="left new badge purple" data-badge-caption="Randomised"></span>
+												</td>
+												<td>Distance from centre to edge of target circles.</td>
+											</tr>
+											<tr>
+												<td>Target colour</td>
+												<td>
+													<span class="left new badge orange darken-4" data-badge-caption="Controlled"></span>
+												</td>
+												<td>Ensure high contrast and easy identification of target, and to eliminate discrimination in the case of participant
+													colour blindness. <br>Value: Black (#000000)</td>
+											</tr>
+											<tr>
+												<td>Device used</td>
+												<td>
+													<span class="left new badge orange darken-4" data-badge-caption="Controlled"></span>
+												</td>
+												<td>Maintained to eliminate variation in participant experience. <br>Value: ASUS Transformer Book Flip TP300LA</td>
+											</tr>
+											<tr>
+												<td>Screen pitch/angle</td>
+												<td>
+													<span class="left new badge orange darken-4" data-badge-caption="Controlled"></span>
+												</td>
+												<td>Will be kept at a set angle to keep the test environment as consistent as possible. <br>Value: 90&deg; <br>Reason: Both close to ideal viewing angle for the average user and easy to measure.</td>
+											</tr>
+											<tr>
+												<td>Screen size</td>
+												<td>
+													<span class="left new badge orange darken-4" data-badge-caption="Controlled"></span>
+												</td>
+												<td>Maintained to eliminate variation in participant experience. Borderless fullscreen will be used at all times. <br>Value:
+													----px x ----px</td>
+											</tr>
+											<tr>
+												<td>Screen brightness</td>
+												<td>
+													<span class="left new badge orange darken-4" data-badge-caption="Controlled"></span>
+												</td>
+												<td>Maintained to eliminate variation in participant experience. <br>Value: 100%</td>
+											</tr>
+											<tr>
+												<td>Number of targets objects to be clicked</td>
+												<td>
+													<span class="left new badge orange darken-4" data-badge-caption="Controlled"></span>
+												</td>
+												<td>Maintained to eliminate variation in iterations participants have to learn and upskill in during the test. <br>Value:
+													20</td>
+											</tr>
+											<tr>
+												<td>Viewing angle</td>
+												<td>
+													<span class="left new badge red darken-2" data-badge-caption="Uncontrolled"></span>
+												</td>
+												<td>People’s height and posture affect eye level and inherently, viewing angle. This could affect the clarity or distortion
+													of display.</td>
+											</tr>
+											<tr>
+												<td>Reaction time</td>
+												<td>
+													<span class="left new badge red darken-2" data-badge-caption="Uncontrolled"></span>
+												</td>
+												<td>Because times are recorded from the participants’ previous click, there will be a short but potentially inconsistent
+													time included for the location and reaction to locating the target.</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</section>
 			<section>
 				<div class="row">
@@ -57,39 +164,46 @@ To perform this usability test, we will create a small web application for parti
 			<section>
 				<div class="row">
 					<div class="col s10 offset-s1">
-						<h4>Method</h4>
-						<ol>
+						<h4>Execution</h4>
+						<ul class="collapsible" data-collapsible="accordion">
 							<li>
-								Find someone who is willing to participate in the experiment (we will be implementing hallway testing)
+								<div class="collapsible-header"><i class="material-icons">clear_all</i>List of Steps</div>
+								<div class="collapsible-body">
+									<ol class="collection">
+										<li class="collection-item">
+											Find someone who is willing to participate in the experiment (we will be implementing hallway testing)
+										</li>
+										<li class="collection-item">
+											Ask the participant to read the experiment’s Information Sheet
+										</li>
+										<li class="collection-item">
+											Ask them to sign a Consent Form if they agree to its terms
+										</li>
+										<li class="collection-item">
+											Ask them to sit at the desk in front of the test device if they have not already done so, in a way that is comfortable to them; they can adjust their seat to do so
+										</li>
+										<li class="collection-item">
+											Explain to the them that they are asked to start the test by clicking the ‘Start’ button; from which point they will be successively presented with circular targets they must click as fast as they can
+										</li>
+										<li class="collection-item">
+											Explain to them that we will assign them either mouse or touch input as their first test (we will alternate the start device between participants), afterwhich they will use the remaining input device for the second and final test
+										</li>
+										<li class="collection-item">
+											Ask them to start once they have understood the instructions and are ready
+										</li>
+										<li class="collection-item">
+											Once they reach the end (after 20 targets have been clicked), ask them to prepare to repeat using the remaining input device
+										</li>
+										<li class="collection-item">
+											Prepare the test and ask them to start
+										</li>
+										<li class="collection-item">
+											Once they are finished, thank them for their participation
+										</li>
+									</ol>
+								</div>
 							</li>
-							<li>
-								Ask the participant to read the experiment’s Information Sheet
-							</li>
-							<li>
-								Ask them to sign a Consent Form if they agree to its terms
-							</li>
-							<li>
-								Ask them to sit at the desk in front of the test device if they have not already done so, in a way that is comfortable to them; they can adjust their seat to do so
-							</li>
-							<li>
-								Explain to the them that they are asked to start the test by clicking the ‘Start’ button; from which point they will be successively presented with circular targets they must click as fast as they can
-							</li>
-							<li>
-								Explain to them that we will assign them either mouse or touch input as their first test (we will alternate the start device between participants), afterwhich they will use the remaining input device for the second and final test
-							</li>
-							<li>
-								Ask them to start once they have understood the instructions and are ready
-							</li>
-							<li>
-								Once they reach the end (after 20 targets have been clicked), ask them to prepare to repeat using the remaining input device
-							</li>
-							<li>
-								Prepare the test and ask them to start
-							</li>
-							<li>
-								Once they are finished, thank them for their participation
-							</li>
-						</ol>
+						</ul>
 					</div>
 				</div>
 			</section>

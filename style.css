@@ -55,3 +55,11 @@ h5.question {
 #hit, #time-taken {
     font-weight: 300;
 }
+
+table .badge {
+    margin: 2px 0 !important;
+}
+
+ol * {
+    list-style-type: decimal !important;
+}
