@@ -28,6 +28,23 @@
 			<section>
 				<div class="row">
 					<div class="col s10 offset-s1">
+						<h4>Raw Data</h4>
+						<p>
+							Due to the amount of data being too large to diplay appropriately on this website, we have provided links
+							to the raw datasets in the form of CSV files, which can be opened in a standard text editor or Microsoft
+							Excel (to maintain a formatted table layout).
+							<ul>
+								<li><a href="resource/data-mouse.csv">data-mouse.csv</a></li>
+								<li><a href="resource/data-mouse.csv">data-touch.csv</a></li>
+							</ul>
+						</p>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="row">
+					<div class="col s10 offset-s1">
+						<h4>3D Visualized Data</h4>
 						<p>
 							<div id="container" style="height: 640px"></div>
 						</p>
@@ -85,6 +102,9 @@
 					max: 1500,
 					title: {
 						text: 'Target Displacement (pixels)'
+					},
+					labels: {
+						format: '{value}px'
 					}
 				},
 				yAxis: {
@@ -92,6 +112,9 @@
 					max: 4,
 					title: {
 						text: 'Time to Point (seconds)'
+					},
+					labels: {
+						format: '{value} s'
 					}
 				},
 				zAxis: {
@@ -99,6 +122,9 @@
 					max: 60,
 					title: {
 						text: 'Target Radius (pixels)'
+					},
+					labels: {
+						format: '{value}px'
 					}
 				},
 				legend: {
@@ -108,11 +134,13 @@
 				series: [{
 					name: 'Mouse',
 					colorByPoint: false,
+					color: '#0000ff',
 					data: getMousePlots()
 				},
 				{
 					name: 'Touch',
 					colorByPoint: false,
+					color: '#ff0000',
 					data: getTouchPlots()
 				}]
 			});

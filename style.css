@@ -63,3 +63,12 @@ table .badge {
 ol * {
     list-style-type: decimal !important;
 }
+
+ul:not(.collection) li {
+    list-style-type: disc;
+    margin-left: 3rem;
+}
+
+.card-panel > section:first-child > .row:first-child > .col > h4:first-child {
+    margin-top: 3rem;
+}
