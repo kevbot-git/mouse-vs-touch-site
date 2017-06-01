@@ -28,16 +28,51 @@
 			<section>
 				<div class="row">
 					<div class="col s12">
-						<h4>Introduction</h4>
-						<p>Stuff and things</p>
+						<h4>Design</h4>
+						<p>This test will be specifically designed to compare touch and mouse input devices, and to hopefully discover which device is more effective at pointing to objects on a laptop screen.
+							To perform this usability test, we will create a small <a href="#game">web application</a> for participants to play which aims to be both enjoyable for participants, and to give us meaningful data to analyse, that is consistent enough to make a call on how results compare with our hypothesis. The test will work by sequentially displaying circles on the screen for the participant to click them or touch (depending on the input device), as promptly as possible. The size and position of the circles that the participants click will be completely randomized; with the size of the circles ranging from 20 to 120 pixels in diameter and the position being randomly placed on the screen (the circles will be bound to the screen dimensions).</p><p>Before starting the test, we will assign participants either mouse or touch input to start with (we would alternate starts in effort to counter learning bias), and after explaining how to play, ask them to start by pressing a button in the top-left corner of the screen. The test will start, and they will point at 20 targets, change to the remaining input device and repeat (again, with new sizes and positions). We will explain the test instructions to participants carefully in effort to prevent them from being uncertain about what to do; as misunderstanding the instructions could lead to corrupt data and extreme outliers etc. Informing the participant as opposed to explaining the purpose or advising any particular action that the participant should take will be important due to the trivial and fast-paced nature of the test (we estimate it to take less than a minute for each participant).</p> <!--(http://www.itu.dk/people/slauesen/Papers/Chapter14_with_intro.pdf)-->
+ 
+						<p>We will randomize the radius and position of the circles that the participant is pressing in order to eliminate the possibility that the participant will recall the positions of circles on their second time through. This is important because the dependent variable of our experiment is the timeframe in which the participant can press objects, and “more practice results in less time needed to complete tasks”. (https://measuringu.com/measure-learnability/ lol is dis even a reference tho ha) We will also try to mitigate this issue by setting the target count to 20 objects per input method, so that the probability that the participant would get objects of similar size and location would be lower, which could skew the results. </p>
+ 
+						<p>Our participants will be selected at random from the area surrounding the room in which we will perform our experiment (most likely in WT501), using that method of picking people randomly in the area?. In researching the ideal number of participants for our study we learnt that it is both cost and time effective—while also providing near synonymous results to a large group of participants—to use a small set of participants. Nielson argues that testing a single participant can give you 30% of the information you were looking for in your experiment. Gaining another participant will give you some of the same insight as before, but also provide you with new and unique data, and as the number of people taking your study increases, the things able to be learnt from the test quickly deplete(https://www.nngroup.com/articles/why-you-only-need-to-test-with-5-users/). What we took away from this was that by keeping to a low number of participants (11) we were almost guaranteed to get the same findings from our experiment, while saving more time locating and convincing people to participate in our study.</p>
+ 
+						<!--<p>Also, our test was a moderated in-person test where we stood near the participant and observed them, this was more to check that our system didn't have any faults and that everything was running smoothly. Unfortunately, the Hawthorne effect states that something something. (probs chuck this in conclusion/reflection)</p>-->
 					</div>
 				</div>
 			</section>
 			<section>
 				<div class="row">
 					<div class="col s12">
-						<h4>Purpose</h4>
-						<p>Things and stuff</p>
+						<h4>Hypothesis</h4>
+						<p>We hypothesize that the relationship between targets’ sizes and displacement from the cursor’s original position, and the time users take to point to it using touch will be closer to linear in nature in comparison to that in those using mouse input. We also think, however, that due to users’ fingers presenting parallax type errors (we expect this will be more noticeable with smaller targets), mouse pointing might become more accurate below a particular target size and therefore, potentially, make pointing more efficient than with touch the smaller the targets are.</p>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="row">
+					<div class="col s12">
+						<h4>Method</h4>
+						<!--<p>How and why we did the expirement the way we did. Pull in resources etc about different methodologies and how we controlled the test variables etc etc..</p>-->
+						<p></p>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="card-panel">
+			<section>
+				<div class="row">
+					<div class="col s12">
+						<h4>Experiment</h4>
+						<p>Below is an interactive example of the expirement we performed on participants. Keep in mind that the statistics included here (how many circles you have clicked and how quick you are clicking them) were being saved but not shown to the participant, for the purpose of not skewing the results)</p>
+						
+
+						<div id="game" class="valign-wrapper">
+							<div id="stats-box" class="hide">
+                				<i><p class="stat">Hit Count: <span id="hit">0</span></p></i>
+                				<i><p class="stat">Time taken: <span id="time-taken">0:00</span></p></i>
+            				</div>
+							<a id="game-button" style="margin: 0 auto" class="blue lighten-1 waves-effect waves-light btn-large" onclick="play()">Start demo<i class="material-icons right">play_arrow</i></a>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -52,6 +87,68 @@
 		$(document).ready(() => {
 			//
 		});
+
+		function getScreenDimensions() {
+			var screenWidth  = $('#game').width();
+			var screenHeight = $('#game').height();
+			return {width: screenWidth, height: screenHeight};
+		}
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function spawnCircle() {
+			var dim = getScreenDimensions();
+
+            var size = getRandomInt(20, 120);
+            var width  = size; 
+            var height = size;
+            var x = getRandomInt(0, dim.width-width);
+            var y = getRandomInt(0, dim.height-height);
+
+            var start = new Date();
+            var c = document.getElementById("game");
+            
+            // Create our circle with the given parameters.
+            var circle = document.createElement("div");
+            circle.style.width = width + "px";
+            circle.style.height = height + "px";
+            circle.style.background = '#607d8b';
+            circle.style.position = "absolute";
+            circle.style.top = y + "px";
+            circle.style.left = x + "px"
+            circle.style.borderRadius = "100%";
+
+			console.log(x);
+			console.log(y);
+
+            circle.onclick = (evt) => {
+                var timeTaken = (new Date()-start) / 1000;
+                document.getElementById("time-taken").innerHTML = parseFloat(timeTaken);
+
+                var hitCounter = document.getElementById("hit");
+                document.getElementById("hit").innerText = (parseInt(hitCounter.innerText) + 1).toString();
+
+                c.removeChild(circle);
+                spawnCircle();
+            };
+
+            // Add the circle to the DOM.
+            c.appendChild(circle);
+        };
+
+        function printStats(circleX, circleY, clickX, clickY, width, height, timeTaken) {
+            var stats = {circleX: circleX, circleY: circleY, clickX: clickX, clickY: clickY, dimensions: {width: width, height: height}, timeTaken: timeTaken};
+            console.log(stats);
+        }
+
+        function play() {
+			$('#game-button').addClass('hide');
+            $('#stats-box').removeClass("hide");
+
+            spawnCircle();   
+        }
 	</script>
 </body>
 </html>
