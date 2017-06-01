@@ -16,3 +16,9 @@ div.container > .card-panel {
     margin-top: 4rem;
     background: white;
 }
+
+h5.question {
+    line-height: 2.4rem;
+    text-align: center;
+    font-style: italic;
+}

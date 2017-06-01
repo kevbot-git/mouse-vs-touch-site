@@ -47,10 +47,17 @@
 	<script src="lib/jquery.min.js"></script>
 	<script src="lib/jquery-ui.min.js"></script>
 	<script src="lib/materialize/js/materialize.min.js"></script>
+	<script src="lib/highcharts.js"></script>
+	<script src="lib/highcharts-3d.js"></script>
+	<script src="lib/highcharts-exporting.js"></script>
+
+	<script src="data/data.js"></script>
 
 	<script type="text/javascript">
 		$(document).ready(() => {
-			//
+			onDataLoad((mouse, touch) => {
+				console.log('Plssss', mouse[0]);
+			});
 		});
 	</script>
 </body>

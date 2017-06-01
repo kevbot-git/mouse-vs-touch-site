@@ -27,17 +27,41 @@
 		<div class="card-panel">
 			<section>
 				<div class="row">
-					<div class="col s12">
-						<h4>Introduction</h4>
-						<p>Stuff and things</p>
+					<div class="col s10 offset-s1">
+						<h5 class="question">
+							&ldquo;Which out of mouse or touch input methods provide higher efficiency in pointing to objects that vary in size and
+							position?&rdquo;
+						</h5>
 					</div>
 				</div>
 			</section>
 			<section>
 				<div class="row">
-					<div class="col s12">
+					<div class="col s10 offset-s1">
+						<h4>Introduction</h4>
+						<p>
+							UI design has come a long way from early computers such as the Xerox PARC to today's elegant
+							Macintosh interfaces. Over time we have optimized user interfaces to maximize visual appeal and
+							functional usability, thanks to findings by the likes of Paul Fitts and Jakob Nielsen.
+							This website is an interactive report based on a Human-Computer Interaction study carried out by
+							AUT students Farley Schaefer and Kevin Menhinick. The study aims to answer the above research question;
+							hopefully for the purpose of serving as a reference for developers or UI designers when considering
+							pointing aspects of interaction with their UIs.
+						</p>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="row">
+					<div class="col s10 offset-s1">
 						<h4>Purpose</h4>
-						<p>Things and stuff</p>
+						<p>
+							The purpose of this study is to look at the relationship between a target’s size and screen
+							position, and each input method’s efficiency in pointing to the target (in terms of time taken to
+							point to and click); and to find out how the connection differs for each. We will have to design and carry out an abstract experiment that will produce
+							results appropriate to be generalized; thus allowing them to potentially be used for a sort of benchmark
+							for UI design as a whole.
+						</p>
 					</div>
 				</div>
 			</section>
@@ -50,7 +74,8 @@
 
 	<script type="text/javascript">
 		$(document).ready(() => {
-			//
+			$('.question').hide();
+			$('.question').show('drop', { direction: 'up' }, 1000);
 		});
 	</script>
 </body>
