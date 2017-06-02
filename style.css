@@ -72,3 +72,7 @@ ul.normal li {
 .card-panel > section:first-child > .row:first-child > .col > h4:first-child {
     margin-top: 3rem;
 }
+
+img.fill-x {
+    width: 100%;
+}

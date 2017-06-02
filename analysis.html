@@ -27,38 +27,84 @@
 		<div class="card-panel">
 			<section>
 				<div class="row">
-					<div class="col s12">
-						<h4>Analysis of Variance (ANOVA)</h4>
-						<p>We already know that movement time (<i>t</i>) is given by the following function:</p>
-						<p><i>t</i> = <i>a</i> + <i>b</i> log<sub>2</sub>(2<i>A</i>/<i>W + c</i>)</p>
-						<p>...where the variables are:</p>
-						<p><ul class="normal">
-							<li><i>t</i> is </li>
-							<li><i>a</i> and <i>b</i> are </li>
-							<li><i>c</i> is a constant of either 0, 0.5 or 1 </li>
-							<li><i>d</i> is the displacement of the target during the movement, and</li>
-							<li><i>w</i> is the width of the target; in our case, 2 x the radius.</li>
-						</ul></p>
-						<p>What we are tasked with doing is finding out the strength of this correlation in mouse and touch data, respectively. Blah..</p>
-
+					<div class="col s10 offset-s1">
+						<h4>Comparison of Multiple Regression Statistics</h4>
+						<p>
+							Before making any claims as to what our results mean, we will have to analyse any trends we see to verify
+							that they have sufficient statistical significance to base any claims from. To do this, we decided to use
+							Microsoft Excel to perform a multiple regression for mouse and touch data, respectively. Excel determined
+							a range of statistical properties&mdash;many of which do not concern us with our type of analysis&mdash;but most
+							importantly, gives us both a form of ‘best fit’ graph for each of our sets of data, along with an Analysis
+							of Variance for each. Below are the tables generated for each input type, below each will be a discussion
+							of how we interpret each.
+						</p>
 					</div>
 				</div>
-			</section>
-			<section>
 				<div class="row">
 					<div class="col s10 offset-s1">
-						<h4>Regressions</h4>
+						<h5>Mouse input</h5>
+						<p><img data-caption="Multiple Regression of Mouse Data" class="materialboxed fill-x" src="resource/regression-mouse.jpg"></p>
 						<p>
-							<div id="chart1" style="height: 640px"></div>
+							Looking at the Regression Statistics for mouse data, we see that the R Squared value of 20.73% sits fairly
+							low, meaning the model generated only accounts for around 1 fifth of the variance along the best fit line.
+							Since we have more than one x variable in this multiple linear regression, we take note of the Adjusted R
+							Squared value; though it is relatively indifferent at 20.00%. This means that the line could have a visibly
+							perceived empty space between it and the raw data plots. To find out how statistically significant this
+							regression is, we look to the ANOVA section. The P-values are all extremely low, suggesting that our variance
+							was low and that there is a significance to our findings in this case.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s10 offset-s1">
+						<h5>Touch input</h5>
+						<p><img data-caption="Multiple Regression of Touch Data" class="materialboxed fill-x" src="resource/regression-touch.jpg"></p>
+						<p>
+							Looking at the Regression Statistics for touch data, we see that the Adjusted R Squared value of 3.87%
+							is extremely low, accounting for close to only one 20th of the variance along the best fit line. We could
+							attribute this to the inclusion of large outliers found in touch data, which are skewing our results.
+							In comparison to the results from the multiple regression of mouse data, these regression results are
+							unfortunately much less reliable; this is reflected in the P-values, which are up to one hundred times
+							greater than those of the previous regression.
 						</p>
 					</div>
 				</div>
 			</section>
 			<section>
 				<div class="row">
-					<div class="col s12">
-						<h4>Purpose</h4>
-						<p>Things and stuff</p>
+					<div class="col s10 offset-s1">
+						<h4>Isolated x Variable Regression Comparisons</h4>
+						<p>
+							Another way we can analyse our results is to compare our dependent vaiable with each independent variable,
+							individually. Below are graphs directly comparing mouse and touch results for each isolated x variable.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s10 offset-s1">
+						<h5>Time Taken (s) vs. Radius (px)</h5>
+						<p><img data-caption="Regression Showing Time Taken vs. Radius" class="materialboxed fill-x" src="resource/time_vs_radius.jpg"></p>
+						<p>
+							What we can see from this regression is that there is definitely a negative relationship between target radius and
+							time to click; however the link is stronger with touch data. The different gradients for each input type also show
+							a point of intersection&mdash;visible at around radius=25px. What this tells us is that based on our results, it
+							could be said that mouse input allows for faster pointing until target radii become less than 25 pixels. This would
+							match part of our hypothesis where we thought that touch input would be more difficult with smaller targets, due
+							to the effects of parallax error and the fact that human fingertips have a relatively large surface area; making
+							them harder to maintain accuracy with smaller targets.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s10 offset-s1">
+						<h5>Time Taken (s) vs. Displacement (px)</h5>
+						<p><img data-caption="Regression Showing Time Taken vs. Displacement" class="materialboxed fill-x" src="resource/time_vs_displacement.jpg"></p>
+						<p>
+							What this regression shows is that the difference in relationships between displacement and time to click is a lot
+							more difficult to call significant. Both show a positive linear relationship as expected; with only a slight
+							difference in y-intersept (the 'c' in <i>y = mx + c</i>). In this case, the isolation does not give us enough
+							to make a claim from.
+						</p>
 					</div>
 				</div>
 			</section>
@@ -76,122 +122,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(() => {
-			var chart = new Highcharts.Chart({
-				chart: {
-					renderTo: 'chart1',
-					margin: 100,
-					type: 'scatter',
-					options3d: {
-						enabled: true,
-						alpha: 10,
-						beta: 30,
-						depth: 250,
-						viewDistance: 5,
-						fitToPlot: false,
-						frame: {
-							bottom: { size: 1, color: 'rgba(0,0,0,0.02)' },
-							back: { size: 1, color: 'rgba(0,0,0,0.04)' },
-							side: { size: 1, color: 'rgba(0,0,0,0.06)' }
-						}
-					}
-				},
-				title: {
-					text: 'Scatter Chart Showing Target Size and Displacement vs. Time Taken to Click'
-				},
-				subtitle: {
-					text: 'Click and drag the graph to rotate it manually'
-				},
-				plotOptions: {
-					scatter: {
-						width: 10,
-						height: 10,
-						depth: 10
-					}
-				},
-				xAxis: {
-					min: 0,
-					max: 1500,
-					title: {
-						text: 'Target Displacement (pixels)'
-					},
-					labels: {
-						format: '{value}px'
-					}
-				},
-				yAxis: {
-					min: 0,
-					max: 4,
-					title: {
-						text: 'Time to Point (seconds)'
-					},
-					labels: {
-						format: '{value} s'
-					}
-				},
-				zAxis: {
-					min: 0,
-					max: 60,
-					title: {
-						text: 'Target Radius (pixels)'
-					},
-					labels: {
-						format: '{value}px'
-					}
-				},
-				legend: {
-					enabled: true,
-					verticalAlign: 'bottom'
-				},
-				series: [
-					{
-						name: 'Mouse',
-						colorByPoint: false,
-						color: '#0000ff',
-						data: getMousePlots()
-					},
-					{
-						name: 'Mouse Regression (Linear)',
-						type: 'line',
-						colorByPoint: false,
-						color: '#00ff00',
-						data: [
-							[ 0, 0.955761472, 0 ],
-							[ 1433.642208, 0.955761472, 57.34568832 ]
-						]
-					}
-				]
-			});
-
 			//
-
-			$(chart.container).on('mousedown.hc touchstart.hc', function (eStart) {
-				eStart = chart.pointer.normalize(eStart);
-
-				var posX = eStart.pageX,
-					posY = eStart.pageY,
-					alpha = chart.options.chart.options3d.alpha,
-					beta = chart.options.chart.options3d.beta,
-					newAlpha,
-					newBeta,
-					sensitivity = 5; // lower is more sensitive
-
-				$(document).on({
-					'mousemove.hc touchdrag.hc': function (e) {
-						// Run beta
-						newBeta = beta + (posX - e.pageX) / sensitivity;
-						chart.options.chart.options3d.beta = newBeta;
-
-						// Run alpha
-						newAlpha = alpha + (e.pageY - posY) / sensitivity;
-						chart.options.chart.options3d.alpha = newAlpha;
-
-						chart.redraw(false);
-					},
-					'mouseup touchend': function () {
-						$(document).off('.hc');
-					}
-				});
-			});
 		});
 	</script>
 </body>
