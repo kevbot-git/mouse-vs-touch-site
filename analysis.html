@@ -28,8 +28,29 @@
 			<section>
 				<div class="row">
 					<div class="col s12">
-						<h4>Introduction</h4>
-						<p>Stuff and things</p>
+						<h4>Analysis of Variance (ANOVA)</h4>
+						<p>We already know that movement time (<i>t</i>) is given by the following function:</p>
+						<p><i>t</i> = <i>a</i> + <i>b</i> log<sub>2</sub>(2<i>A</i>/<i>W + c</i>)</p>
+						<p>...where the variables are:</p>
+						<p><ul class="normal">
+							<li><i>t</i> is </li>
+							<li><i>a</i> and <i>b</i> are </li>
+							<li><i>c</i> is a constant of either 0, 0.5 or 1 </li>
+							<li><i>d</i> is the displacement of the target during the movement, and</li>
+							<li><i>w</i> is the width of the target; in our case, 2 x the radius.</li>
+						</ul></p>
+						<p>What we are tasked with doing is finding out the strength of this correlation in mouse and touch data, respectively. Blah..</p>
+
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="row">
+					<div class="col s10 offset-s1">
+						<h4>Regressions</h4>
+						<p>
+							<div id="chart1" style="height: 640px"></div>
+						</p>
 					</div>
 				</div>
 			</section>
@@ -55,8 +76,121 @@
 
 	<script type="text/javascript">
 		$(document).ready(() => {
-			onDataLoad((mouse, touch) => {
-				console.log('Plssss', mouse[0]);
+			var chart = new Highcharts.Chart({
+				chart: {
+					renderTo: 'chart1',
+					margin: 100,
+					type: 'scatter',
+					options3d: {
+						enabled: true,
+						alpha: 10,
+						beta: 30,
+						depth: 250,
+						viewDistance: 5,
+						fitToPlot: false,
+						frame: {
+							bottom: { size: 1, color: 'rgba(0,0,0,0.02)' },
+							back: { size: 1, color: 'rgba(0,0,0,0.04)' },
+							side: { size: 1, color: 'rgba(0,0,0,0.06)' }
+						}
+					}
+				},
+				title: {
+					text: 'Scatter Chart Showing Target Size and Displacement vs. Time Taken to Click'
+				},
+				subtitle: {
+					text: 'Click and drag the graph to rotate it manually'
+				},
+				plotOptions: {
+					scatter: {
+						width: 10,
+						height: 10,
+						depth: 10
+					}
+				},
+				xAxis: {
+					min: 0,
+					max: 1500,
+					title: {
+						text: 'Target Displacement (pixels)'
+					},
+					labels: {
+						format: '{value}px'
+					}
+				},
+				yAxis: {
+					min: 0,
+					max: 4,
+					title: {
+						text: 'Time to Point (seconds)'
+					},
+					labels: {
+						format: '{value} s'
+					}
+				},
+				zAxis: {
+					min: 0,
+					max: 60,
+					title: {
+						text: 'Target Radius (pixels)'
+					},
+					labels: {
+						format: '{value}px'
+					}
+				},
+				legend: {
+					enabled: true,
+					verticalAlign: 'bottom'
+				},
+				series: [
+					{
+						name: 'Mouse',
+						colorByPoint: false,
+						color: '#0000ff',
+						data: getMousePlots()
+					},
+					{
+						name: 'Mouse Regression (Linear)',
+						type: 'line',
+						colorByPoint: false,
+						color: '#00ff00',
+						data: [
+							[ 0, 0.955761472, 0 ],
+							[ 1433.642208, 0.955761472, 57.34568832 ]
+						]
+					}
+				]
+			});
+
+			//
+
+			$(chart.container).on('mousedown.hc touchstart.hc', function (eStart) {
+				eStart = chart.pointer.normalize(eStart);
+
+				var posX = eStart.pageX,
+					posY = eStart.pageY,
+					alpha = chart.options.chart.options3d.alpha,
+					beta = chart.options.chart.options3d.beta,
+					newAlpha,
+					newBeta,
+					sensitivity = 5; // lower is more sensitive
+
+				$(document).on({
+					'mousemove.hc touchdrag.hc': function (e) {
+						// Run beta
+						newBeta = beta + (posX - e.pageX) / sensitivity;
+						chart.options.chart.options3d.beta = newBeta;
+
+						// Run alpha
+						newAlpha = alpha + (e.pageY - posY) / sensitivity;
+						chart.options.chart.options3d.alpha = newAlpha;
+
+						chart.redraw(false);
+					},
+					'mouseup touchend': function () {
+						$(document).off('.hc');
+					}
+				});
 			});
 		});
 	</script>
